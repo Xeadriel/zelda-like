@@ -1,6 +1,6 @@
 class_name StateIdle extends State
 
-@export var SLOWDOWNSPEED = 25
+@export var SLOWDOWNSPEED : int
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
@@ -15,6 +15,7 @@ func physicsProcess(delta: float) -> void:
         ):
         finished.emit("StateRun")
     else:
+        entity = entity as Player
         entity.velocity = entity.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
 
 ## Called by the state machine upon changing the active state. The `data` parameter

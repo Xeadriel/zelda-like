@@ -2,7 +2,7 @@
 ## Extend this class and override its methods to implement a state.
 class_name StateRun extends State
 
-@export var SPEED = 250
+@export var SPEED : int
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:

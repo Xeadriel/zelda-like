@@ -34,8 +34,10 @@ currentState = NodePath("StateIdle")
 
 [node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("2_gntrk")
+SLOWDOWNSPEED = 40
 entity = NodePath("../..")
 
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("2_kyqiw")
+SPEED = 250
 entity = NodePath("../..")
