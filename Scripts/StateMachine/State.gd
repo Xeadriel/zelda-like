@@ -1,6 +1,6 @@
 class_name State extends Node
 
-@export var unit : CharacterBody2D = null
+@export var entity : CharacterBody2D = null
 
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data: Dictionary)

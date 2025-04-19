@@ -2,6 +2,8 @@
 ## Extend this class and override its methods to implement a state.
 class_name StateRun extends State
 
+@export var speed = 100
+
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:
     pass
@@ -11,8 +13,13 @@ func process(_delta: float) -> void:
     pass
 
 ## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-    pass
+func physicsProcess(delta: float) -> void:
+    if (Input.is_action_just_pressed("left") or 
+        Input.is_action_just_pressed("UNIT_RIGHT") or
+        Input.is_action_just_pressed("UNIT_UP") or
+        Input.is_action_just_pressed("UNIT_DOWN")
+        ):
+        entity.velocity = entity.velocity.move_toward(Vector2.ZERO, delta*speed)
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.

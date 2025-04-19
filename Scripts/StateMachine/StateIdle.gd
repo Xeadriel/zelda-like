@@ -7,7 +7,7 @@ func process(_delta: float) -> void:
     pass
 
 ## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
+func physicsProcess(delta: float) -> void:
     if (Input.is_action_just_pressed("left") or 
         Input.is_action_just_pressed("UNIT_RIGHT") or
         Input.is_action_just_pressed("UNIT_UP") or
@@ -15,7 +15,7 @@ func physicsProcess(_delta: float) -> void:
         ):
         finished.emit("StateRun")
     else:
-        unit.velocity = unit.velocity.move_toward(Vector3.ZERO, _delta*slowDownSpeed)
+        entity.velocity = entity.velocity.move_toward(Vector2.ZERO, delta*slowDownSpeed)
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
