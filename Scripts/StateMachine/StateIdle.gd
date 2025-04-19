@@ -1,6 +1,6 @@
 class_name StateIdle extends State
 
-@export var SLOWDOWNSPEED = 100
+@export var SLOWDOWNSPEED = 25
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
@@ -8,14 +8,14 @@ func process(_delta: float) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(delta: float) -> void:
-    if (Input.is_action_just_pressed("left") or 
-        Input.is_action_just_pressed("UNIT_RIGHT") or
-        Input.is_action_just_pressed("UNIT_UP") or
-        Input.is_action_just_pressed("UNIT_DOWN")
+    if (Input.is_action_just_pressed("left") or
+        Input.is_action_just_pressed("right") or
+        Input.is_action_just_pressed("up") or
+        Input.is_action_just_pressed("down")
         ):
         finished.emit("StateRun")
     else:
-        entity.velocity = entity.velocity.move_toward(Vector2.ZERO, delta*SLOWDOWNSPEED)
+        entity.velocity = entity.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
