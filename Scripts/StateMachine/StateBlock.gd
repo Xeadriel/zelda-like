@@ -1,23 +1,23 @@
-class_name StateAttack extends State
+class_name StateBlock extends State
 
-@export var ATTACK_DELAY : float
-var attackTimer : float = 0
+@export var BLOCK_DELAY : float
+var blockTimer : float = 0
 
 func handleInput() -> void:
 	pass
 
 func process(delta: float) -> void:
 	# do stuff on timer then go to idle
-	attackTimer += delta
-	if attackTimer >= ATTACK_DELAY:
+	blockTimer += delta
+	if blockTimer >= BLOCK_DELAY:
 		finished.emit("StateIdle")
 
 func physicsProcess(_delta: float) -> void:
 	pass
 
 func enter(previous_state_path: String, data := {}) -> void:
-	attackTimer = 0
-	entity.attack()
+	blockTimer = 0
+	entity.block()
 
 func exit() -> void:
 	pass
