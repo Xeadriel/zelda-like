@@ -1,6 +1,12 @@
-class_name StateIdle extends State
+## Virtual base class for all states.
+## Extend this class and override its methods to implement a state.
+class_name StateAttack extends State
 
-@export var SLOWDOWNSPEED : int
+@export var SPEED : int
+
+## Called by the state machine when receiving unhandled input events.
+func handleInput() -> void:
+    pass
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
@@ -8,15 +14,8 @@ func process(_delta: float) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(delta: float) -> void:
-    if (Input.is_action_pressed("left") or
-        Input.is_action_pressed("right") or
-        Input.is_action_pressed("up") or
-        Input.is_action_pressed("down")
-        ):
-        finished.emit("StateRun")
-    else:
-        entity = entity as Player
-        entity.velocity = entity.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
+    # do stuff on timer then go to idle
+    finished.emit("StateIdle")
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
