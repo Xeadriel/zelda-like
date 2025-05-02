@@ -1,10 +1,53 @@
 1-2 Player
-sword and shield, block timing mechanic
+	- sword and shield
+	- block only via timing
+	- move in 8 directions
+	- attack in 4 directions
+
+Enemies:
+
+Goblin:
+	1 walk up to nearest player
+	2 walk in circle around player
+	3 telegraf
+	4 hit in random time intervals (more realistic when swarms of goblins are there)
+		when in range
+	5 then circle a little again
+	6 goto 1
+	- 1-2 hit hp
+
+Goblin mage/ranged: 
+	1 stay in range of nearest player
+	2 run away when in melee
+	3 shoot when in range
+	4 move a little after a shot
+	5 goto 1
+	- 1 hp
+
+Piranha plant?
+	1 move towards nearest player via jumping movements
+	2 telegraf bite
+	3 bite
+	4 goto 1
+	- 1 hp 2 hp?
 
 1st Dungeon
-tribal orc/goblin with nature magic
+- tribal orc/goblin with nature magic
+- 8-12 rooms
+- at around half the rooms: dungeon item
+- dungeon keys, 
+- exploration and loot
+- mini boss for item
 
+
+
+
+
+
+Item ideas:
 chalice of life (uses enemy blood, once filled, can be thrown grows plants)
+
+
 
 blow air,
 boomerang,
