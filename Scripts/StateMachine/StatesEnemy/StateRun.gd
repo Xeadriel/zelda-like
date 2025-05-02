@@ -2,6 +2,8 @@
 ## Extend this class and override its methods to implement a state.
 extends StateEnemy
 
+@export var SPEED : int
+
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:
 	pass
@@ -12,7 +14,13 @@ func process(_delta: float) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
-	pass
+	var target: Player = closestPlayer()
+	if (entity.atkRange < entity.global_position.distance_to(target.global_position)):
+		var direction := entity.global_position.direction_to(target.global_position)
+		entity.velocity = direction.normalized() * SPEED
+		
+	else:
+		finished.emit(IDLE)
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
