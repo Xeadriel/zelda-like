@@ -1,9 +1,8 @@
 class_name Enemy extends CharacterBody2D
 
 @export var maxHp := 100
-@export var player: PackedScene
-@export var mvSpeed := 20
-@export var range := 50
+@export var atkRange := 100.0
+
 
 var currHp: int:
 	set(newHP):
@@ -22,3 +21,5 @@ func _process(delta: float) -> void:
 	pass
 
 	
+func _physics_process(_delta: float) -> void:
+	move_and_slide()

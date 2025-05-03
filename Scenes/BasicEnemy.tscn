@@ -1,8 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3weh3qljrsjs"]
+[gd_scene load_steps=9 format=3 uid="uid://c3weh3qljrsjs"]
 
-[ext_resource type="Script" uid="uid://d3p81wnaspacc" path="res://Scripts/basic_enemy.gd" id="1_whhnv"]
+[ext_resource type="Script" uid="uid://d3p81wnaspacc" path="res://Scripts/BasicEnemy.gd" id="1_whhnv"]
+[ext_resource type="Texture2D" uid="uid://c8ql1y4lqqevt" path="res://icon.svg" id="2_6x443"]
+[ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_g722j"]
+[ext_resource type="Script" uid="uid://boxb6vvfpv8k" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_h4tt6"]
+[ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/StateRun.gd" id="5_vjgja"]
+[ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="6_h4tt6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftsrl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6x443"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6x443")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_whhnv")
@@ -10,4 +26,29 @@ script = ExtResource("1_whhnv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ftsrl")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15625, 0.203125)
+sprite_frames = SubResource("SpriteFrames_6x443")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
+script = ExtResource("3_g722j")
+currentState = NodePath("StateIdle")
+
+[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("4_h4tt6")
+entity = NodePath("../..")
+
+[node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("5_vjgja")
+SPEED = 100
+entity = NodePath("../..")
+
+[node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("6_h4tt6")
+entity = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine/StateAtk"]
+
+[node name="AtkCooldown" type="Timer" parent="StateMachine/StateAtk"]
+
+[connection signal="timeout" from="StateMachine/StateAtk/AtkCooldown" to="StateMachine/StateAtk" method="_canAtk"]
