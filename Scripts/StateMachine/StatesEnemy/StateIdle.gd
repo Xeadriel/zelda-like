@@ -10,7 +10,11 @@ func physicsProcess(_delta: float) -> void:
 	var target: Player = closestPlayer()
 	if (entity.atkRange >= entity.global_position.distance_to(target.global_position)):
 		entity.velocity = entity.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
-		finished.emit(ATK)
+		match randi_range(0, 1):
+			0:
+				finished.emit(ATK)
+			1:
+				finished.emit(RUNCIRCLE)
 	else:
 		finished.emit(RUN)
 	

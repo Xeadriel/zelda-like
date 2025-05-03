@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3weh3qljrsjs"]
+[gd_scene load_steps=10 format=3 uid="uid://c3weh3qljrsjs"]
 
 [ext_resource type="Script" uid="uid://d3p81wnaspacc" path="res://Scripts/BasicEnemy.gd" id="1_whhnv"]
 [ext_resource type="Texture2D" uid="uid://c8ql1y4lqqevt" path="res://icon.svg" id="2_6x443"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://boxb6vvfpv8k" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_h4tt6"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/StateRun.gd" id="5_vjgja"]
 [ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="6_h4tt6"]
+[ext_resource type="Script" uid="uid://o117oxka7qjv" path="res://Scripts/StateMachine/StatesEnemy/StateRunCircle.gd" id="7_vjgja"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftsrl"]
 
@@ -50,5 +51,9 @@ entity = NodePath("../..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine/StateAtk"]
 
 [node name="AtkCooldown" type="Timer" parent="StateMachine/StateAtk"]
+
+[node name="StateRunCircle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("7_vjgja")
+entity = NodePath("../..")
 
 [connection signal="timeout" from="StateMachine/StateAtk/AtkCooldown" to="StateMachine/StateAtk" method="_canAtk"]
