@@ -9,7 +9,9 @@ func handleInput() -> void:
 func process(delta: float) -> void:
 	# do stuff on timer then go to idle
 	attackTimer += delta
+	entity.velocity = Vector2.ZERO
 	if attackTimer >= ATTACK_DELAY:
+		entity.stopAttack()
 		finished.emit("StateIdle")
 
 func physicsProcess(_delta: float) -> void:
