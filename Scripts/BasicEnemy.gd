@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 @export var maxHp := 100
-@export var atkRange := 300.0
+@export var atkRange := 100.0
 
 
 var currHp: int:
