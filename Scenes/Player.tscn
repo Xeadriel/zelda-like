@@ -162,3 +162,8 @@ shape = SubResource("RectangleShape2D_52ee3")
 position = Vector2(0.500015, 0.500004)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_52ee3")
+
+[connection signal="body_entered" from="AttackUp" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackDown" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackRight" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackLeft" to="." method="swordHitSomething"]
