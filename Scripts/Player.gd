@@ -6,6 +6,7 @@ enum Direction {
 	LEFT,
 	RIGHT
 }
+
 var direction = Direction.DOWN
 
 @onready var attackUp : Area2D = $AttackUp
@@ -20,14 +21,35 @@ func _physics_process(_delta: float) -> void:
 func attack() -> void:
 	match direction:
 		Direction.UP:
-			attackUp.paused = false
+			attackUp.process_mode = PROCESS_MODE_INHERIT
+			attackUp.visible = true
 		Direction.DOWN:
-			attackDown.paused = false
+			attackDown.process_mode = PROCESS_MODE_INHERIT
+			attackDown.visible = true
 		Direction.LEFT:
-			attackLeft.paused = false
+			attackLeft.process_mode = PROCESS_MODE_INHERIT
+			attackLeft.visible = true
 		Direction.RIGHT:
-			attackRight.paused = false
+			attackRight.process_mode = PROCESS_MODE_INHERIT
+			attackRight.visible = true
+
+func stopAttack() -> void:
+	attackUp.process_mode = PROCESS_MODE_DISABLED
+	attackDown.process_mode = PROCESS_MODE_DISABLED
+	attackLeft.process_mode = PROCESS_MODE_DISABLED
+	attackRight.process_mode = PROCESS_MODE_DISABLED
+	attackUp.visible = false
+	attackDown.visible = false
+	attackLeft.visible = false
+	attackRight.visible = false
+
 
 # blocks in facing direction
 func block() -> void:
 	pass
+
+
+func swordHitSomething(body: Node2D) -> void:
+	if body is Enemy:
+		var enemy : Enemy = body
+		enemy.takeDamage(1)
