@@ -44,7 +44,6 @@ func stopAttack() -> void:
 	attackDown.process_mode = PROCESS_MODE_DISABLED
 	attackLeft.process_mode = PROCESS_MODE_DISABLED
 	attackRight.process_mode = PROCESS_MODE_DISABLED
-	print(attackRight.visible)
 
 
 # blocks in facing direction
