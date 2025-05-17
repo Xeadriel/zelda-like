@@ -15,10 +15,12 @@ func handleInput() -> void:
 func process(_delta: float) -> void:
 	pass
 
-func physicsProcess(delta: float) -> void:
+func physicsProcess(_delta: float) -> void:
 	if Input.is_action_just_pressed("hit"):
 		finished.emit("StateAttack")
-
+	elif Input.is_action_just_pressed("block"):
+		finished.emit("StateBlock")
+		
 	var direction :=  Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	if direction:
 		entity.velocity = direction.normalized() * SPEED
@@ -38,7 +40,7 @@ func setPlayerDirection(direction : Vector2) -> void:
 	elif direction.x > 0:
 		entity.direction = Direction.RIGHT
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	pass
 
 func exit() -> void:

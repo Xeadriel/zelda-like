@@ -5,9 +5,11 @@ class_name StateIdle extends State
 func process(_delta: float) -> void:
 	pass
 
-func physicsProcess(delta: float) -> void:
+func physicsProcess(_delta: float) -> void:
 	if Input.is_action_just_pressed("hit"):
 		finished.emit("StateAttack")
+	elif Input.is_action_just_pressed("block"):
+		finished.emit("StateBlock")
 	elif (Input.is_action_pressed("left") or
 		Input.is_action_pressed("right") or
 		Input.is_action_pressed("up") or
@@ -18,7 +20,7 @@ func physicsProcess(delta: float) -> void:
 		entity = entity as Player
 		entity.velocity = entity.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	pass
 
 func exit() -> void:
