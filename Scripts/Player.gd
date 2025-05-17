@@ -14,6 +14,8 @@ var direction = Direction.DOWN
 @onready var attackLeft : Area2D = $AttackLeft
 @onready var attackRight : Area2D= $AttackRight
 
+var blockTimeStamp = 0
+
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
@@ -34,21 +36,25 @@ func attack() -> void:
 			attackRight.visible = true
 
 func stopAttack() -> void:
-	attackUp.process_mode = PROCESS_MODE_DISABLED
-	attackDown.process_mode = PROCESS_MODE_DISABLED
-	attackLeft.process_mode = PROCESS_MODE_DISABLED
-	attackRight.process_mode = PROCESS_MODE_DISABLED
 	attackUp.visible = false
 	attackDown.visible = false
 	attackLeft.visible = false
 	attackRight.visible = false
+	attackUp.process_mode = PROCESS_MODE_DISABLED
+	attackDown.process_mode = PROCESS_MODE_DISABLED
+	attackLeft.process_mode = PROCESS_MODE_DISABLED
+	attackRight.process_mode = PROCESS_MODE_DISABLED
+	print(attackRight.visible)
 
 
 # blocks in facing direction
 func block() -> void:
-	pass
+	blockTimeStamp = Time.get_ticks_msec()
 
+func stopBlock() -> void:
+	blockTimeStamp = 0
 
+# signal when area2D collides with something
 func swordHitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body

@@ -11,7 +11,6 @@ func process(delta: float) -> void:
 	attackTimer += delta
 	entity.velocity = Vector2.ZERO
 	if attackTimer >= ATTACK_DELAY:
-		entity.stopAttack()
 		finished.emit("StateIdle")
 
 func physicsProcess(_delta: float) -> void:
@@ -22,4 +21,5 @@ func enter(previous_state_path: String, data := {}) -> void:
 	entity.attack()
 
 func exit() -> void:
-	pass
+	attackTimer = 0
+	entity.stopAttack()

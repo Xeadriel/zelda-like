@@ -6,7 +6,7 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(delta: float) -> void:
-	if Input.is_action_pressed("hit"):
+	if Input.is_action_just_pressed("hit"):
 		finished.emit("StateAttack")
 	elif (Input.is_action_pressed("left") or
 		Input.is_action_pressed("right") or

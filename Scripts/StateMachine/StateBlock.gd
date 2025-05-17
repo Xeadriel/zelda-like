@@ -9,7 +9,9 @@ func handleInput() -> void:
 func process(delta: float) -> void:
 	# do stuff on timer then go to idle
 	blockTimer += delta
+	entity.velocity = Vector2.ZERO
 	if blockTimer >= BLOCK_DELAY:
+		entity.stopBlock()
 		finished.emit("StateIdle")
 
 func physicsProcess(_delta: float) -> void:
