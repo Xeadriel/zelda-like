@@ -16,12 +16,12 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
-	if Input.is_action_just_pressed("hit"):
+	if Input.is_action_just_pressed(HIT):
 		finished.emit("StateAttack")
-	elif Input.is_action_just_pressed("block"):
+	elif Input.is_action_just_pressed(BLOCK):
 		finished.emit("StateBlock")
 		
-	var direction :=  Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
 	if direction:
 		player.velocity = direction.normalized() * SPEED
 		setPlayerDirection(direction)

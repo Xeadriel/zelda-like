@@ -6,14 +6,14 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
-	if Input.is_action_just_pressed("hit"):
+	if Input.is_action_just_pressed(HIT):
 		finished.emit("StateAttack")
-	elif Input.is_action_just_pressed("block"):
+	elif Input.is_action_just_pressed(BLOCK):
 		finished.emit("StateBlock")
-	elif (Input.is_action_pressed("left") or
-		Input.is_action_pressed("right") or
-		Input.is_action_pressed("up") or
-		Input.is_action_pressed("down")
+	elif (Input.is_action_pressed(LEFT) or
+		Input.is_action_pressed(RIGHT) or
+		Input.is_action_pressed(UP) or
+		Input.is_action_pressed(DOWN)
 		):
 		finished.emit("StateRun")
 	else:
