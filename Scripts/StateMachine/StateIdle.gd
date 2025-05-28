@@ -1,4 +1,4 @@
-class_name StateIdle extends State
+class_name StateIdle extends StatePlayer
 
 @export var SLOWDOWNSPEED : int
 
@@ -17,8 +17,7 @@ func physicsProcess(_delta: float) -> void:
 		):
 		finished.emit("StateRun")
 	else:
-		entity = entity as Player
-		entity.velocity = entity.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
+		player.velocity = player.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	pass

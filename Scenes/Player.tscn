@@ -677,25 +677,25 @@ shape = SubResource("CapsuleShape2D_nn08x")
 script = ExtResource("3_5ixxa")
 currentState = NodePath("StateIdle")
 
-[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("2_gntrk")
 SLOWDOWNSPEED = 40
-entity = NodePath("../..")
+player = NodePath("../..")
 
-[node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("2_kyqiw")
 SPEED = 250
-entity = NodePath("../..")
+player = NodePath("../..")
 
-[node name="StateAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("6_nn08x")
 ATTACK_DELAY = 0.3
-entity = NodePath("../..")
+player = NodePath("../..")
 
-[node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("8_bhhdu")
 BLOCK_DELAY = 1.0
-entity = NodePath("../..")
+player = NodePath("../..")
 
 [node name="AttackUp" type="Area2D" parent="."]
 visible = false

@@ -15,7 +15,7 @@ func process(_delta: float) -> void:
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	if canAtk:
-		entity.rotation += 0.1
+		enemy.rotation += 0.1
 		elapsedTime += _delta
 		if elapsedTime >= aspd:
 			canAtk = false

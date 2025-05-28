@@ -1,7 +1,6 @@
-class_name State extends Node
+class_name StatePlayer extends State
 
-## Emitted when the state finishes and wants to transition to another state.
-signal finished(next_state_path: String, data: Dictionary)
+@export var player : Player = null
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:

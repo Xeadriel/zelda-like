@@ -23,14 +23,14 @@ func process(_delta: float) -> void:
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	var target: Player = closestPlayer()
-	var inRange: bool = entity.atkRange >= entity.global_position.distance_to(target.global_position)
+	var inRange: bool = enemy.atkRange >= enemy.global_position.distance_to(target.global_position)
 	duration -= _delta
 	if (target && inRange && duration > 0):
 		angle += SPEED * _delta
 		var circlePos = target.global_position + Vector2(cos(angle), sin(angle)) * circleRadius
-		var diffVector = entity.global_position - target.global_position
+		var diffVector = enemy.global_position - target.global_position
 		var tangent = Vector2(-diffVector.y * directionChanger, diffVector.x * directionChanger).normalized()
-		entity.velocity = tangent * SPEED * circleRadius
+		enemy.velocity = tangent * SPEED * circleRadius
 	else:
 		finished.emit(IDLE)
 

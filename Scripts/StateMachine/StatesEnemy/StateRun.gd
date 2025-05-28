@@ -15,9 +15,9 @@ func process(_delta: float) -> void:
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	var target: Player = closestPlayer()
-	if (entity.atkRange < entity.global_position.distance_to(target.global_position)):
-		var direction := entity.global_position.direction_to(target.global_position)
-		entity.velocity = direction.normalized() * SPEED
+	if (enemy.atkRange < enemy.global_position.distance_to(target.global_position)):
+		var direction := enemy.global_position.direction_to(target.global_position)
+		enemy.velocity = direction.normalized() * SPEED
 	else:
 		finished.emit(IDLE)
 

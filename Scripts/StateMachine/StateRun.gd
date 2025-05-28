@@ -1,4 +1,4 @@
-class_name StateRun extends State
+class_name StateRun extends StatePlayer
 
 @export var SPEED : int
 
@@ -23,22 +23,22 @@ func physicsProcess(_delta: float) -> void:
 		
 	var direction :=  Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	if direction:
-		entity.velocity = direction.normalized() * SPEED
+		player.velocity = direction.normalized() * SPEED
 		setPlayerDirection(direction)
 	else:
 		finished.emit("StateIdle")
 
 func setPlayerDirection(direction : Vector2) -> void:
 	if direction.y < 0:
-		entity.direction = Direction.UP
+		player.direction = Direction.UP
 	elif direction.y > 0:
-		entity.direction = Direction.DOWN
+		player.direction = Direction.DOWN
 
 	# horizontal direction prioritized over vertical direction
 	if direction.x < 0:
-		entity.direction = Direction.LEFT
+		player.direction = Direction.LEFT
 	elif direction.x > 0:
-		entity.direction = Direction.RIGHT
+		player.direction = Direction.RIGHT
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	pass

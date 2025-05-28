@@ -7,6 +7,8 @@ enum Direction {
 	RIGHT
 }
 
+const DAMAGE = 1
+
 var direction = Direction.DOWN
 
 @onready var attackUp : Area2D = $AttackUp
@@ -116,4 +118,4 @@ func stopBlock() -> void:
 func swordHitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
-		enemy.takeDamage(1)
+		enemy.takeDamage(DAMAGE)
