@@ -20,8 +20,10 @@ GlobalScope="*res://Scripts/GlobalScope.gd"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=675
+window/size/viewport_width=2560
+window/size/viewport_height=1440
+window/size/initial_position=Vector2i(0, 10)
+window/stretch/mode="viewport"
 
 [global_group]
 
