@@ -35,21 +35,21 @@ sprite_frames = SubResource("SpriteFrames_6x443")
 script = ExtResource("3_g722j")
 currentState = NodePath("StateIdle")
 
-[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entityNew")]
+[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("4_h4tt6")
-entityNew = NodePath("../..")
+entity = NodePath("../..")
 
-[node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entityNew")]
+[node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_vjgja")
 SPEED = 100
-entityNew = NodePath("../..")
+entity = NodePath("../..")
 
-[node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entityNew")]
+[node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("6_h4tt6")
-entityNew = NodePath("../..")
+entity = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine/StateAtk"]
 
-[node name="StateRunCircle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entityNew")]
+[node name="StateRunCircle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("7_vjgja")
-entityNew = NodePath("../..")
+entity = NodePath("../..")

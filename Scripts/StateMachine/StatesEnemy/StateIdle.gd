@@ -7,9 +7,9 @@ func process(_delta: float) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
-	var target: Player = closestPlayer()
-	if (entityNew.atkRange >= entityNew.global_position.distance_to(target.global_position)):
-		entityNew.velocity = entityNew.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
+	entity.target = closestPlayer()
+	if (entity.atkRange >= entity.global_position.distance_to(entity.target.global_position)):
+		entity.velocity = entity.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
 		match randi_range(0, 1):
 			0:
 				finished.emit(ATK)

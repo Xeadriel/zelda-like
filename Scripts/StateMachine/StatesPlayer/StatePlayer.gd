@@ -1,7 +1,33 @@
-class_name State extends Node
+class_name StatePlayer extends State
 
-## Emitted when the state finishes and wants to transition to another state.
-signal finished(next_state_path: String, data: Dictionary)
+@export var player : Player = null
+
+# input actions
+var UP = "up"
+var DOWN = "down"
+var LEFT = "left"
+var RIGHT = "right"
+var HIT = "hit"
+var BLOCK = "block"
+
+func _ready() -> void:
+	assert(player != null)
+	assert(player.name == "Player" or player.name == "Player2")
+	
+	if player.name == "Player":
+		UP = "up"
+		DOWN = "down"
+		LEFT = "left"
+		RIGHT = "right"
+		HIT = "hit"
+		BLOCK = "block"
+	elif player.name == "Player2":
+		UP = "up2"
+		DOWN = "down2"
+		LEFT = "left2"
+		RIGHT = "right2"
+		HIT = "hit2"
+		BLOCK = "block2"
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:

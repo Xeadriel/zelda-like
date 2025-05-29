@@ -13,7 +13,7 @@ func process(_delta: float) -> void:
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	if canAtk:
-		entityNew.rotation += 0.1
+		entity.rotation += 0.1
 		elapsedTime += _delta
 		if elapsedTime >= telegraphTime:
 			canAtk = false
@@ -28,10 +28,10 @@ func enter(previous_state_path: String, data := {}) -> void:
 	hitbox = Area2D.new()
 
 func updateHitbox():
-	if entityNew.global_position.x > entityNew.target.global_position.x:
-		hitbox.position = Vector2(entityNew.atkRange, 0) * -1
+	if entity.global_position.x > entity.target.global_position.x:
+		hitbox.position = Vector2(entity.atkRange, 0) * -1
 	else:
-		hitbox.position = Vector2(entityNew.atkRange, 0)
+		hitbox.position = Vector2(entity.atkRange, 0)
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.

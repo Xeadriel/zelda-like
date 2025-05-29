@@ -7,12 +7,42 @@ enum Direction {
 	RIGHT
 }
 
+const DAMAGE = 1
+
 var direction = Direction.DOWN
 
 @onready var attackUp : Area2D = $AttackUp
 @onready var attackDown : Area2D = $AttackDown
 @onready var attackLeft : Area2D = $AttackLeft
 @onready var attackRight : Area2D= $AttackRight
+
+var blockTimeStamp = 0
+
+@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func _process(_delta) -> void:
+	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
+		return
+	if velocity.x != 0 or velocity.y != 0:
+		match direction:
+			Direction.UP:
+				animatedSprite.play("runBack")
+			Direction.DOWN:
+				animatedSprite.play("runFront")	
+			Direction.LEFT:
+				animatedSprite.play("runLeft")
+			Direction.RIGHT:
+				animatedSprite.play("runRight")
+	else:
+		match direction:
+			Direction.UP:
+				animatedSprite.play("idleBack")
+			Direction.DOWN:
+				animatedSprite.play("idleFront")	
+			Direction.LEFT:
+				animatedSprite.play("idleLeft")
+			Direction.RIGHT:
+				animatedSprite.play("idleRight")
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -23,33 +53,69 @@ func attack() -> void:
 		Direction.UP:
 			attackUp.process_mode = PROCESS_MODE_INHERIT
 			attackUp.visible = true
+			animatedSprite.play("attackBack")
 		Direction.DOWN:
 			attackDown.process_mode = PROCESS_MODE_INHERIT
 			attackDown.visible = true
+			animatedSprite.play("attackFront")
 		Direction.LEFT:
 			attackLeft.process_mode = PROCESS_MODE_INHERIT
 			attackLeft.visible = true
+			animatedSprite.play("attackLeft")
 		Direction.RIGHT:
 			attackRight.process_mode = PROCESS_MODE_INHERIT
 			attackRight.visible = true
+			animatedSprite.play("attackRight")
 
 func stopAttack() -> void:
-	attackUp.process_mode = PROCESS_MODE_DISABLED
-	attackDown.process_mode = PROCESS_MODE_DISABLED
-	attackLeft.process_mode = PROCESS_MODE_DISABLED
-	attackRight.process_mode = PROCESS_MODE_DISABLED
 	attackUp.visible = false
 	attackDown.visible = false
 	attackLeft.visible = false
 	attackRight.visible = false
+	attackUp.process_mode = PROCESS_MODE_DISABLED
+	attackDown.process_mode = PROCESS_MODE_DISABLED
+	attackLeft.process_mode = PROCESS_MODE_DISABLED
+	attackRight.process_mode = PROCESS_MODE_DISABLED
+	
+	match direction:
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")	
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
 
 
 # blocks in facing direction
 func block() -> void:
-	pass
+	blockTimeStamp = Time.get_ticks_msec()
+	# add animation
+	match direction:
+		Direction.UP:
+			animatedSprite.play("blockBack")
+		Direction.DOWN:
+			animatedSprite.play("blockFront")
+		Direction.LEFT:
+			animatedSprite.play("blockLeft")
+		Direction.RIGHT:
+			animatedSprite.play("blockRight")
 
+func stopBlock() -> void:
+	blockTimeStamp = 0
+	match direction:
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")	
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
 
+# signal when area2D collides with something
 func swordHitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
-		enemy.takeDamage(1)
+		enemy.takeDamage(DAMAGE)

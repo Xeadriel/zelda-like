@@ -2,7 +2,7 @@ class_name StateEnemy extends State
 
 @onready var players
 
-@export var entityNew : Enemy = null
+@export var entity: Enemy = null
 
 const IDLE = "StateIdle"
 const RUN = "StateRun"
@@ -13,7 +13,7 @@ enum inRangeBehavior {ATK, CIRCLE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	assert(owner is Enemy, "StateEnemy Class belongs only to Enemy class!")#
+	assert(owner is Enemy, "StateEnemy Class belongs only to Enemy class!")
 	players = get_tree().get_nodes_in_group("Players")
 
 func closestPlayer() -> Player:
