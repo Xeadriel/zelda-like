@@ -2,6 +2,8 @@ class_name StateEnemy extends State
 
 @onready var players
 
+@export var entityNew : Enemy = null
+
 const IDLE = "StateIdle"
 const RUN = "StateRun"
 const ATK = "StateAtk"

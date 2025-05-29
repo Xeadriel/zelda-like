@@ -3,6 +3,7 @@ class_name Enemy extends CharacterBody2D
 @export var maxHp := 100
 @export var atkRange := 100.0
 
+var target: Player
 
 var currentHp: int:
 	set(newHP):

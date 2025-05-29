@@ -7,9 +7,7 @@ extends StateEnemy
 @export var minDuration: float = 2
 @export var maxDuration: float = 5
 
-
 var duration: float
-var angle: float = 0.0
 var directionChanger: int
 
 ## Called by the state machine when receiving unhandled input events.
@@ -23,14 +21,12 @@ func process(_delta: float) -> void:
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	var target: Player = closestPlayer()
-	var inRange: bool = entity.atkRange >= entity.global_position.distance_to(target.global_position)
-	duration -= _delta
+	var inRange: bool = entityNew.atkRange >= entityNew.global_position.distance_to(target.global_position)
 	if (target && inRange && duration > 0):
-		angle += SPEED * _delta
-		var circlePos = target.global_position + Vector2(cos(angle), sin(angle)) * circleRadius
-		var diffVector = entity.global_position - target.global_position
+		duration -= _delta
+		var diffVector = entityNew.global_position - target.global_position
 		var tangent = Vector2(-diffVector.y * directionChanger, diffVector.x * directionChanger).normalized()
-		entity.velocity = tangent * SPEED * circleRadius
+		entityNew.velocity = tangent * SPEED * circleRadius
 	else:
 		finished.emit(IDLE)
 

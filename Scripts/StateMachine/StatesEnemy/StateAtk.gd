@@ -1,9 +1,8 @@
 extends StateEnemy
 
-@export var aspd := 1.0
+@export var telegraphTime := 0.5
 
-@onready var atkCooldown = $AtkCooldown
-
+var hitbox: Area2D
 var canAtk: bool = true
 var elapsedTime: float
 
@@ -11,29 +10,30 @@ var elapsedTime: float
 func process(_delta: float) -> void:
 	pass
 	
-	
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	if canAtk:
-		entity.rotation += 0.1
+		entityNew.rotation += 0.1
 		elapsedTime += _delta
-		if elapsedTime >= aspd:
+		if elapsedTime >= telegraphTime:
 			canAtk = false
 	else:
-		if atkCooldown.is_stopped():
-			atkCooldown.start(2.0)
+		updateHitbox()
 		finished.emit(IDLE)
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String, data := {}) -> void:
 	elapsedTime = 0.0
+	hitbox = Area2D.new()
+
+func updateHitbox():
+	if entityNew.global_position.x > entityNew.target.global_position.x:
+		hitbox.position = Vector2(entityNew.atkRange, 0) * -1
+	else:
+		hitbox.position = Vector2(entityNew.atkRange, 0)
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
 func exit() -> void:
 	pass
-
-
-func _canAtk() -> void:
-	canAtk = true
