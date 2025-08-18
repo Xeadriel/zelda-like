@@ -701,6 +701,7 @@ player = NodePath("../..")
 visible = false
 position = Vector2(0, -79)
 rotation = 1.5708
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackUp"]
 shape = SubResource("RectangleShape2D_52ee3")
@@ -714,6 +715,7 @@ texture = SubResource("CanvasTexture_nn08x")
 visible = false
 position = Vector2(0, 79)
 rotation = 1.5708
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackDown"]
 shape = SubResource("RectangleShape2D_52ee3")
@@ -726,6 +728,7 @@ texture = SubResource("CanvasTexture_nn08x")
 [node name="AttackRight" type="Area2D" parent="."]
 visible = false
 position = Vector2(69, 0)
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackRight"]
 shape = SubResource("RectangleShape2D_52ee3")
@@ -738,6 +741,7 @@ texture = SubResource("CanvasTexture_52ee3")
 [node name="AttackLeft" type="Area2D" parent="."]
 visible = false
 position = Vector2(-70, 0)
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackLeft"]
 shape = SubResource("RectangleShape2D_52ee3")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://behe1paq4th5l"]
+[gd_scene load_steps=4 format=3 uid="uid://behe1paq4th5l"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_hk6qd"]
-[ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Player.tscn" id="2_cs1ky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_hk6qd")
@@ -171,11 +170,4 @@ navigation_layer_0/layers = 1
 sources/2 = SubResource("TileSetAtlasSource_cs1ky")
 
 [node name="TileMap" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAACAAIAAgAEAAUAAAADAAIAAgAEAAUAAAACAAMAAgACAAgAAAABAAMAAgAAAAAAAAABAAIAAgAAAAAAAAABAAEAAgAAAAEAAAACAAEAAgACAAAAAAADAAEAAgACAAAAAAAEAAIAAgAEAAUAAAAEAAMAAgAEAAUAAAAEAAEAAgACAAAAAAAFAAIAAgAEAAgAAAAFAAMAAgAEAAUAAAAFAAEAAgACAAAAAAAGAAIAAgAEAAUAAAAGAAMAAgACAAgAAAAGAAEAAgACAAAAAAAHAAIAAgAEAAUAAAAIAAIAAgABAAAAAAAHAAMAAgABAAgAAAAHAAEAAgACAAAAAAAIAAEAAgACAAEAAAAHAAQAAgADAAgAAAAGAAQAAgAAAAgAAAAEAAQAAgAEAAgAAAADAAQAAgADAAgAAAAFAAQAAgAEAAUAAAACAAQAAgAAAAgAAAABAAQAAgAAAAAAAAACAAUAAgAEAAUAAAABAAUAAgAAAAAAAAADAAUAAgAEAAUAAAAEAAUAAgAEAAUAAAAEAAYAAgADAAAAAAADAAYAAgADAAAAAAACAAYAAgADAAAAAAAFAAUAAgAEAAUAAAAFAAYAAgADAAAAAAAGAAUAAgAEAAUAAAAGAAYAAgADAAAAAAABAAYAAgADAAEAAAADAAMAAgABAAgAAAAIAAMAAgABAAAAAAAIAAQAAgABAAAAAAAHAAUAAgAEAAUAAAAIAAUAAgABAAAAAAAIAAYAAgABAAEAAAAHAAYAAgADAAAAAAA=")
 tile_set = SubResource("TileSet_hj7eh")
-
-[node name="Player" parent="." instance=ExtResource("2_cs1ky")]
-position = Vector2(86, 79)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1284, 720)

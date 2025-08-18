@@ -20,6 +20,9 @@ var blockTimeStamp = 0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready() -> void:
+	stopAttack()
+
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
 		return
