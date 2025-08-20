@@ -2,41 +2,67 @@
 ## Extend this class and override its methods to implement a state.
 extends StateEnemy
 
-@export var SPEED : float = 1.0
-@export var circleRadius: float = 100.0
-@export var minDuration: float = 2
-@export var maxDuration: float = 5
+@export var SPEED : float = 100.0
+@export var minDuration4DirChange: float = 3
+@export var maxDuration4DirChange: float = 7
 
-var duration: float
-var directionChanger: int
+@export var minDuration4Telegraph: float = 1
+@export var maxDuration4Telegraph: float = 5
+
+# when the distance is slightly off its fine but otherwise needs correction
+@export var distanceThreshold: float = 10
+
+var dirChanger: int = [-1, 1][randi() % 2]
+var timer4DirChange: float
+
+var timer4Telegraph: float
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:
 	pass
 
 ## Called by the state machine on the engine's main loop tick.
-func process(_delta: float) -> void:
-	pass
+func process(delta: float) -> void:
+	entity.target = getClosestPlayer()
+	var distance = entity.global_position.distance_to(entity.target.global_position)
+	var inRangeThresh: bool = entity.atkRange + distanceThreshold >= distance
+	
+	timer4DirChange -= delta
+	timer4Telegraph -= delta
+	
+	if entity.target && inRangeThresh && timer4DirChange > 0 && timer4Telegraph > 0:
+		if distance < entity.atkRange - distanceThreshold:
+			entity.velocity = entity.global_position.direction_to(
+				entity.target.global_position).normalized() * SPEED * -1
+		elif distance > entity.atkRange:
+			entity.velocity = entity.global_position.direction_to(
+				entity.target.global_position).normalized() * SPEED
+		else:
+			var diffVector = entity.global_position - entity.target.global_position
+			var tangent = Vector2(-diffVector.y * dirChanger, 
+				diffVector.x * dirChanger).normalized()
+			entity.velocity = tangent * SPEED
+		
+		entity.direction = entity.getDirectionToPlayer()
+		entity.run()
+	elif entity.atkRange >= distance && timer4Telegraph:
+		finished.emit(TELEGRAPH)
+	elif inRangeThresh && timer4DirChange <= 0:
+		timer4DirChange = randf_range(minDuration4DirChange, maxDuration4DirChange)
+		dirChanger = -dirChanger
+	else:
+		finished.emit(RUN)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
-	entity.target = closestPlayer()
-	var inRange: bool = entity.atkRange >= entity.global_position.distance_to(entity.target.global_position)
-	if (entity.target && inRange && duration > 0):
-		duration -= _delta
-		var diffVector = entity.global_position - entity.target.global_position
-		var tangent = Vector2(-diffVector.y * directionChanger, diffVector.x * directionChanger).normalized()
-		entity.velocity = tangent * SPEED * circleRadius
-	else:
-		finished.emit(IDLE)
+	pass
 
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(previous_state_path: String, data := {}) -> void:
-	duration = randi_range(minDuration, maxDuration)
-	directionChanger = [-1, 1][randi() % 2]
-	
-## Called by the state machine before changing the active state. Use this function
-## to clean up the state.
+
+func enter(_previous_state_path: String, _data := {}) -> void:
+	if timer4DirChange < 0.5:
+		timer4DirChange = randf_range(minDuration4DirChange, maxDuration4DirChange)
+	if timer4Telegraph < 0.5:
+		timer4Telegraph = randf_range(minDuration4Telegraph, maxDuration4Telegraph)
+
 func exit() -> void:
 	pass

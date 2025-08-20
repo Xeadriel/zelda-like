@@ -10,20 +10,25 @@ func handleInput() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
-	pass
+	entity.target = getClosestPlayer()
+	var distance = entity.global_position.distance_to(entity.target.global_position)
+	if  entity.aggroRange < distance:
+		finished.emit(IDLE)
+	elif entity.atkRange <= distance:
+		var direction = entity.global_position.direction_to(entity.target.global_position)
+		entity.velocity = direction.normalized() * SPEED
+		entity.direction = entity.getDirectionFromVector(direction)
+		entity.run()
+	else:
+		finished.emit(RUNCIRCLE)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
-	entity.target = closestPlayer()
-	if (entity.atkRange < entity.global_position.distance_to(entity.target.global_position)):
-		var direction := entity.global_position.direction_to(entity.target.global_position)
-		entity.velocity = direction.normalized() * SPEED
-	else:
-		finished.emit(IDLE)
+	pass
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	pass
 
 ## Called by the state machine before changing the active state. Use this function

@@ -1,31 +1,32 @@
 extends StateEnemy
 
-@export var telegraphTime := 0.5
-
 var hitbox: Area2D
 var canAtk: bool = true
 var elapsedTime: float
 
-## Called by the state machine on the engine's main loop tick.
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}
+
+func _ready() -> void:
+	super()
+	entity.animationFinishedSignal.connect(animationFinished)
+
 func process(_delta: float) -> void:
 	pass
 	
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	if canAtk:
-		entity.rotation += 0.1
-		elapsedTime += _delta
-		if elapsedTime >= telegraphTime:
-			canAtk = false
-	else:
-		updateHitbox()
-		finished.emit(IDLE)
+func physicsProcess(delta: float) -> void:
+	pass
 
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(previous_state_path: String, data := {}) -> void:
-	elapsedTime = 0.0
+func enter(_previous_state_path: String, _data := {}) -> void:
+	entity.target = getClosestPlayer()
+	entity.velocity = Vector2.ZERO
 	hitbox = Area2D.new()
+	entity.attack()
+	updateHitbox()
 
 func updateHitbox():
 	if entity.global_position.x > entity.target.global_position.x:
@@ -33,7 +34,11 @@ func updateHitbox():
 	else:
 		hitbox.position = Vector2(entity.atkRange, 0)
 
-## Called by the state machine before changing the active state. Use this function
-## to clean up the state.
 func exit() -> void:
 	pass
+
+func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
+	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
+		return
+	
+	finished.emit(RUNCIRCLE)

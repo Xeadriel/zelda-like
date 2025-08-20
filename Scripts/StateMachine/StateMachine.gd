@@ -7,7 +7,7 @@ func _ready() -> void:
 		state_node.finished.connect(_transition_to_next_state)
 
 	await owner.ready
-	currentState.enter("")
+	currentState.enter("StateIdle")
 
 func _process(delta: float) -> void:
 	currentState.process(delta)

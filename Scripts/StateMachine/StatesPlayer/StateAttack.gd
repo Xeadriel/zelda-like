@@ -8,8 +8,8 @@ func handleInput() -> void:
 
 func process(delta: float) -> void:
 	# do stuff on timer then go to idle
-	attackTimer += delta
 	player.velocity = Vector2.ZERO
+	attackTimer += delta
 	if attackTimer >= ATTACK_DELAY:
 		attackTimer = 0
 		finished.emit("StateIdle")

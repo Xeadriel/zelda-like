@@ -1,7 +1,8 @@
 class_name State extends Node
 
 ## Emitted when the state finishes and wants to transition to another state.
-signal finished(next_state_path: String, data: Dictionary)
+@warning_ignore("unused_signal")
+signal finished(_next_state_path: String, _data: Dictionary)
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:

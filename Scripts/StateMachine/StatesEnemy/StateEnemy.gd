@@ -8,6 +8,7 @@ const IDLE = "StateIdle"
 const RUN = "StateRun"
 const ATK = "StateAtk"
 const RUNCIRCLE = "StateRunCircle"
+const TELEGRAPH = "StateTelegraph"
 
 enum inRangeBehavior {ATK, CIRCLE}
 
@@ -16,13 +17,18 @@ func _ready() -> void:
 	assert(owner is Enemy, "StateEnemy Class belongs only to Enemy class!")
 	players = get_tree().get_nodes_in_group("Players")
 
-func closestPlayer() -> Player:
+func enter(_previous_state_path: String, _data := {}):
+	pass
+
+func getClosestPlayer() -> Player:
 	var closestPlayer: Player
-	var closestDistance := 10000.0
+	var closestDistance = INF
 	for p in players:
-		var distanceToPlayer := entity.global_position.distance_to(p.global_position)
+		var distanceToPlayer = p.global_position.distance_to(entity.global_position)
 		if(distanceToPlayer < closestDistance):
 			closestDistance = distanceToPlayer
 			closestPlayer = p
 	return closestPlayer
-	
+
+func getDistanceSelf2Target():
+	return entity.target.global_position.distance_to(entity.global_position)
