@@ -2,7 +2,7 @@ extends StateEnemy
 
 @export var slowDownSpeed := 200.0
 ## Called by the state machine on the engine's main loop tick.
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	entity.target = getClosestPlayer()
 	var distance = getDistanceSelf2Target()
 	

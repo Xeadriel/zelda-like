@@ -15,6 +15,12 @@ enum Direction {
 }
 var direction = Direction.DOWN
 
+const DAMAGE = 1
+@onready var attackUp : Area2D = $AttackUp
+@onready var attackDown : Area2D = $AttackDown
+@onready var attackLeft : Area2D = $AttackLeft
+@onready var attackRight : Area2D= $AttackRight
+
 var currentHp: int:
 	set(newHP):
 		currentHp = newHP
@@ -54,7 +60,7 @@ func getDirectionFromVector(dir: Vector2) -> Direction:
 	
 	return getDirectionFromAngle(angle)
 
-func getDirectionFromAngle(angle) -> Direction:
+func getDirectionFromAngle(angle: float) -> Direction:
 	if angle > -45 and angle <= 45:
 		return Direction.RIGHT
 	elif angle > 135 or angle <= -135:
@@ -107,10 +113,34 @@ func telegraphAttack() -> void:
 func attack() -> void:
 	match direction:
 		Direction.UP:
+			attackUp.process_mode = PROCESS_MODE_INHERIT
+			attackUp.visible = true
 			animatedSprite.play("attackBack")
 		Direction.DOWN:
-			animatedSprite.play("attackFront")	
+			attackDown.process_mode = PROCESS_MODE_INHERIT
+			attackDown.visible = true
+			animatedSprite.play("attackFront")
 		Direction.LEFT:
+			attackLeft.process_mode = PROCESS_MODE_INHERIT
+			attackLeft.visible = true
 			animatedSprite.play("attackLeft")
 		Direction.RIGHT:
+			attackRight.process_mode = PROCESS_MODE_INHERIT
+			attackRight.visible = true
 			animatedSprite.play("attackRight")
+
+func stopAttack() -> void:
+	attackUp.visible = false
+	attackDown.visible = false
+	attackLeft.visible = false
+	attackRight.visible = false
+	attackUp.process_mode = PROCESS_MODE_DISABLED
+	attackDown.process_mode = PROCESS_MODE_DISABLED
+	attackLeft.process_mode = PROCESS_MODE_DISABLED
+	attackRight.process_mode = PROCESS_MODE_DISABLED
+
+# signal when area2D collides with something
+func hitSomething(body: Node2D) -> void:
+	if body is Player:
+		var player : Player = body
+		player.takeDamage(DAMAGE)

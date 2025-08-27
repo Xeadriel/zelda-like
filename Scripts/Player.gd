@@ -7,6 +7,9 @@ enum Direction {
 	RIGHT
 }
 
+var hp = 3
+signal playerDeath
+
 const DAMAGE = 1
 
 var direction = Direction.DOWN
@@ -49,6 +52,13 @@ func _process(_delta) -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+
+func takeDamage(dmg):
+	hp -= dmg
+	if hp <= 0:
+		var playerNumber = 2 if name == "Player2" else 1
+		playerDeath.emit(playerNumber)
+		print("player " + str(playerNumber) + " is ded")
 
 # attacks in facing direction
 func attack() -> void:

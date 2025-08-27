@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=8 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_gwj4l"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Player.tscn" id="2_eb5f0"]
 [ext_resource type="PackedScene" uid="uid://c3weh3qljrsjs" path="res://Scenes/BasicEnemy.tscn" id="2_hro2n"]
 [ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="3_xbxf7"]
+[ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Player2.tscn" id="5_7f6id"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_gwj4l")
@@ -169,3 +170,6 @@ offset_top = 279.0
 offset_right = 2064.0
 offset_bottom = 551.0
 text = "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam urna tempor pulvinar vivamus fringilla lacus nec metus bibendum egestas iaculis massa nisl malesuada lacinia integer nunc posuere ut hendrerit semper vel class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos himenaeos orci varius natoque penatibus et magnis dis parturient montes nascetur ridiculus mus donec rhoncus eros lobortis nulla molestie mattis scelerisque maximus eget fermentum odio phasellus non purus est efficitur laoreet mauris pharetra vestibulum fusce dictum risus blandit quis suspendisse aliquet nisi sodales consequat magna ante condimentum neque at luctus nibh finibus facilisis dapibus etiam interdum tortor ligula congue sollicitudin erat viverra ac tincidunt nam porta elementum a enim euismod quam justo lectus commodo augue arcu dignissim velit aliquam imperdiet mollis nullam volutpat porttitor ullamcorper rutrum gravida cras eleifend turpis fames primis vulputate ornare sagittis vehicula praesent dui felis venenatis ultrices proin libero feugiat tristique accumsan maecenas potenti ultricies habitant morbi senectus netus suscipit auctor curabitur facilisi cubilia curae hac habitasse platea dictumst lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque."
+
+[node name="Player2" parent="." instance=ExtResource("5_7f6id")]
+position = Vector2(1471, 33)

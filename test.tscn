@@ -8,19 +8,15 @@
 
 [node name="Enemy" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(708, 183)
-maxHp = 3
 
 [node name="Enemy2" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(689, 473)
-maxHp = 3
 
 [node name="Enemy3" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(833, 453)
-maxHp = 3
 
 [node name="Enemy4" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(909, 272)
-maxHp = 3
 
 [node name="Player" parent="." instance=ExtResource("2_6uqi0")]
 position = Vector2(363, 251)
