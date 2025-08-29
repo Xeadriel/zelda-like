@@ -165,7 +165,7 @@ position = Vector2(122.946, 21.0779)
 scale = Vector2(3.29642, 0.483969)
 texture = ExtResource("3_xbxf7")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2"]
 self_modulate = Color(1, 0, 0, 1)
 clip_contents = false
 offset_left = 529.0
