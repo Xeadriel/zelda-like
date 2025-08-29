@@ -143,8 +143,4 @@ func stopAttack() -> void:
 func hitSomething(body: Node2D) -> void:
 	if body is Player:
 		var player : Player = body
-		print("attackUp.process_mode " + str(attackUp.process_mode))
-		print("attackDown.process_mode " + str(attackDown.process_mode))
-		print("attackLeft.process_mode " + str(attackLeft.process_mode))
-		print("attackRight.process_mode " + str(attackRight.process_mode))
 		player.takeDamage(DAMAGE)

@@ -23,6 +23,9 @@ var blockTimeStamp = 0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready() -> void:
+	playerDeath.connect(EventHandler.playerDied)
+
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
 		return
@@ -55,7 +58,6 @@ func takeDamage(dmg):
 	if hp <= 0:
 		var playerNumber = 2 if name == "Player2" else 1
 		playerDeath.emit(playerNumber)
-		print("player " + str(playerNumber) + " is ded")
 
 # attacks in facing direction
 func attack() -> void:
