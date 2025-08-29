@@ -7,10 +7,10 @@ enum Direction {
 	RIGHT
 }
 
-var hp = 3
 signal playerDeath
 
-const DAMAGE = 1
+@export var hp = 3
+@export var DAMAGE = 1
 
 var direction = Direction.DOWN
 
@@ -22,9 +22,6 @@ var direction = Direction.DOWN
 var blockTimeStamp = 0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-
-func _ready() -> void:
-	stopAttack()
 
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:

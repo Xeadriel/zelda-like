@@ -862,6 +862,7 @@ script = ExtResource("8_lc4gu")
 entity = NodePath("../..")
 
 [node name="AttackUp" type="Area2D" parent="."]
+process_mode = 4
 visible = false
 position = Vector2(0, -79)
 rotation = 1.5708
@@ -876,6 +877,7 @@ scale = Vector2(46.8024, 105.328)
 texture = SubResource("CanvasTexture_lc4gu")
 
 [node name="AttackDown" type="Area2D" parent="."]
+process_mode = 4
 visible = false
 position = Vector2(0, 79)
 rotation = 1.5708
@@ -890,6 +892,7 @@ scale = Vector2(46.8024, 105.328)
 texture = SubResource("CanvasTexture_lc4gu")
 
 [node name="AttackRight" type="Area2D" parent="."]
+process_mode = 4
 visible = false
 position = Vector2(69, 0)
 monitorable = false
@@ -903,6 +906,7 @@ scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_6do23")
 
 [node name="AttackLeft" type="Area2D" parent="."]
+process_mode = 4
 visible = false
 position = Vector2(-70, 0)
 monitorable = false

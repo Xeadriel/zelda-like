@@ -15,13 +15,13 @@ enum Direction {
 }
 var direction = Direction.DOWN
 
-const DAMAGE = 1
 @onready var attackUp : Area2D = $AttackUp
 @onready var attackDown : Area2D = $AttackDown
 @onready var attackLeft : Area2D = $AttackLeft
 @onready var attackRight : Area2D= $AttackRight
 
-var currentHp: int:
+@export var DAMAGE = 1
+@export var currentHp: int:
 	set(newHP):
 		currentHp = newHP
 		if currentHp < 1:
@@ -143,4 +143,8 @@ func stopAttack() -> void:
 func hitSomething(body: Node2D) -> void:
 	if body is Player:
 		var player : Player = body
+		print("attackUp.process_mode " + str(attackUp.process_mode))
+		print("attackDown.process_mode " + str(attackDown.process_mode))
+		print("attackLeft.process_mode " + str(attackLeft.process_mode))
+		print("attackRight.process_mode " + str(attackRight.process_mode))
 		player.takeDamage(DAMAGE)
