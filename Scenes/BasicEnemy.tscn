@@ -824,6 +824,7 @@ size = Vector2(47, 107)
 [sub_resource type="CanvasTexture" id="CanvasTexture_6do23"]
 
 [node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_whhnv")
 maxHp = 3
 atkRange = 125.0
