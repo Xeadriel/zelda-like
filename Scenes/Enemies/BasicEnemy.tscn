@@ -830,7 +830,7 @@ size = Vector2(47, 107)
 motion_mode = 1
 script = ExtResource("1_whhnv")
 maxHp = 3
-atkRange = 125.0
+atkRange = 130.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")

@@ -108,12 +108,14 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="HalfHeartLeftPlayer2" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(24, 40)
 sprite_frames = SubResource("SpriteFrames_ntbqr")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="HalfHeartRightPlayer2" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(56, 40)
 sprite_frames = SubResource("SpriteFrames_cu4sl")
 animation = &"idle"
