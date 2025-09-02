@@ -16,12 +16,15 @@ signal playerTakesDamage
 
 var direction = Direction.DOWN
 
+@onready var stateMachine = $StateMachine
+
 @onready var attackUp : Area2D = $AttackUp
 @onready var attackDown : Area2D = $AttackDown
 @onready var attackLeft : Area2D = $AttackLeft
 @onready var attackRight : Area2D= $AttackRight
 
 var blockTimeStamp = 0
+@export var blockDelay = 500
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -56,6 +59,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func takeDamage(dmg):
+	if stateMachine.currentState.name == "StateBlock" and blockTimeStamp + blockDelay >= Time.get_ticks_msec():
+		# spawn some block particle and make sound
+		return
 	hp -= dmg
 	if hp <= 0:
 		var playerNumber = 2 if name == "Player2" else 1
