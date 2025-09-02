@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckb4js3ol8fj4"]
+
+[ext_resource type="Script" uid="uid://dio3pmkc3yc72" path="res://Scripts/Players/HealthUI.gd" id="1_ntbqr"]
+[ext_resource type="Texture2D" uid="uid://3kq4m4p6t2uf" path="res://Assets/HalfHeartLeft.png" id="2_6rm4l"]
+[ext_resource type="Texture2D" uid="uid://beiq7r681w5d4" path="res://Assets/HalfHeartLeftDamaged.png" id="2_yfkm6"]
+[ext_resource type="Texture2D" uid="uid://s4qxluw1ydkg" path="res://Assets/HalfHeartLeftGlow.png" id="3_03f4l"]
+[ext_resource type="Texture2D" uid="uid://carjs1v4c1o4u" path="res://Assets/HalfHeartRight.png" id="5_03f4l"]
+[ext_resource type="Texture2D" uid="uid://cl6henf0s6om3" path="res://Assets/HalfHeartRightDamaged.png" id="5_u6ct7"]
+[ext_resource type="Texture2D" uid="uid://cr76oefuprpei" path="res://Assets/HalfHeartRightGlow.png" id="6_0jsqa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntbqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yfkm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_03f4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6rm4l")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6rm4l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6rm4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_03f4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yfkm6")
+}],
+"loop": false,
+"name": &"takeDamage",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cu4sl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_u6ct7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0jsqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_03f4l")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_03f4l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_03f4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0jsqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u6ct7")
+}],
+"loop": false,
+"name": &"takeDamage",
+"speed": 5.0
+}]
+
+[node name="HealthUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ntbqr")
+
+[node name="HalfHeartLeft" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(24, 40)
+sprite_frames = SubResource("SpriteFrames_ntbqr")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HalfHeartRight" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(56, 40)
+sprite_frames = SubResource("SpriteFrames_cu4sl")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HalfHeartLeftPlayer2" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, 40)
+sprite_frames = SubResource("SpriteFrames_ntbqr")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HalfHeartRightPlayer2" type="AnimatedSprite2D" parent="."]
+position = Vector2(56, 40)
+sprite_frames = SubResource("SpriteFrames_cu4sl")
+animation = &"idle"
+autoplay = "idle"

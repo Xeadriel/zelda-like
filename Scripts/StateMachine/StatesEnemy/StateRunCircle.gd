@@ -9,11 +9,17 @@ extends StateEnemy
 @export var minDuration4Telegraph: float = 1
 @export var maxDuration4Telegraph: float = 5
 
+@export var duration4Obstacle: float = 0.5
+
 # when the distance is slightly off its fine but otherwise needs correction
 @export var distanceThreshold: float = 10
 
+@export var obstacleDetection: Area2D
+
 var dirChanger: int = [-1, 1][randi() % 2]
 var timer4DirChange: float
+
+var timer4Obstacle: float = 0.0
 
 var timer4Telegraph: float
 
@@ -29,6 +35,15 @@ func process(delta: float) -> void:
 	
 	timer4DirChange -= delta
 	timer4Telegraph -= delta
+	timer4Obstacle -= delta
+	
+	var potentialObstacles = obstacleDetection.get_overlapping_bodies()
+	if not potentialObstacles.is_empty() and timer4Obstacle <= 0:
+		for o in potentialObstacles:
+			if not o == entity and o is not Player:
+				dirChanger = -dirChanger
+				timer4Obstacle = duration4Obstacle
+				break
 	
 	if entity.target && inRangeThresh && timer4DirChange > 0 && timer4Telegraph > 0:
 		if distance < entity.atkRange - distanceThreshold:
@@ -60,6 +75,7 @@ func physicsProcess(_delta: float) -> void:
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	if timer4DirChange < 0.5:
+		dirChanger = -dirChanger
 		timer4DirChange = randf_range(minDuration4DirChange, maxDuration4DirChange)
 	if timer4Telegraph < 0.5:
 		timer4Telegraph = randf_range(minDuration4Telegraph, maxDuration4Telegraph)

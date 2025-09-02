@@ -8,6 +8,8 @@ func process(_delta: float) -> void:
 	
 	if distance < entity.aggroRange:
 		finished.emit(RUN)
+	
+	entity.velocity = entity.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
