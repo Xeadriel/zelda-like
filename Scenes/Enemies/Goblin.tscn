@@ -1,6 +1,6 @@
 [gd_scene load_steps=115 format=3 uid="uid://c3weh3qljrsjs"]
 
-[ext_resource type="Script" uid="uid://d3p81wnaspacc" path="res://Scripts/Enemies/BasicEnemy.gd" id="1_whhnv"]
+[ext_resource type="Script" uid="uid://dbhfk6b273blh" path="res://Scripts/Enemies/Goblin.gd" id="1_adqnq"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_g722j"]
 [ext_resource type="Script" uid="uid://boxb6vvfpv8k" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_h4tt6"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/StateRun.gd" id="5_vjgja"]
@@ -826,9 +826,9 @@ size = Vector2(47, 107)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6do23"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Goblin" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_whhnv")
+script = ExtResource("1_adqnq")
 maxHp = 3
 atkRange = 130.0
 
