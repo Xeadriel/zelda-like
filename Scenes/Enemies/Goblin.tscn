@@ -817,7 +817,7 @@ radius = 44.0
 height = 108.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4myx3"]
-size = Vector2(108, 126)
+size = Vector2(132, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0td7v"]
 size = Vector2(47, 107)
@@ -827,6 +827,8 @@ size = Vector2(47, 107)
 [sub_resource type="CanvasTexture" id="CanvasTexture_6do23"]
 
 [node name="Goblin" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_adqnq")
 maxHp = 3
@@ -841,6 +843,8 @@ autoplay = "idleFront"
 shape = SubResource("CapsuleShape2D_0td7v")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, -1)

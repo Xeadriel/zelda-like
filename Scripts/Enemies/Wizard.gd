@@ -1,14 +1,19 @@
-class_name Goblin extends Enemy
+class_name Wizard extends Enemy
+
+@onready var fireballContainer = $FireballsContainer
+var fireballScene = preload("res://Scenes/Enemies/Fireball.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentHp = maxHp
 	animatedSprite.animation_finished.connect(animationFinished)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
+	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
@@ -80,33 +85,20 @@ func telegraphAttack() -> void:
 			animatedSprite.play("telegraphRight")
 
 func attack() -> void:
+	var fireball = fireballScene.instantiate()
+	fireball.global_position = global_position
+	var direction = fireball.global_position.direction_to(target.global_position)
+	fireball.direction = direction
+	fireballContainer.add_child(fireball)
 	match direction:
 		Direction.UP:
-			attackUp.process_mode = PROCESS_MODE_INHERIT
-			attackUp.visible = true
 			animatedSprite.play("attackBack")
 		Direction.DOWN:
-			attackDown.process_mode = PROCESS_MODE_INHERIT
-			attackDown.visible = true
 			animatedSprite.play("attackFront")
 		Direction.LEFT:
-			attackLeft.process_mode = PROCESS_MODE_INHERIT
-			attackLeft.visible = true
 			animatedSprite.play("attackLeft")
 		Direction.RIGHT:
-			attackRight.process_mode = PROCESS_MODE_INHERIT
-			attackRight.visible = true
 			animatedSprite.play("attackRight")
-
-func stopAttack() -> void:
-	attackUp.visible = false
-	attackDown.visible = false
-	attackLeft.visible = false
-	attackRight.visible = false
-	attackUp.process_mode = PROCESS_MODE_DISABLED
-	attackDown.process_mode = PROCESS_MODE_DISABLED
-	attackLeft.process_mode = PROCESS_MODE_DISABLED
-	attackRight.process_mode = PROCESS_MODE_DISABLED
 
 # signal when area2D collides with something
 func hitSomething(body: Node2D) -> void:

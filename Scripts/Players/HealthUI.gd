@@ -65,8 +65,6 @@ func _ready() -> void:
 			nextIsRight = not nextIsRight
 
 
-func playerTookDamage():
-	for i in range(player.hp):
-		hearts[i].play(IDLE)
-	
-	hearts[player.hp].play(TAKEDAMAGE)
+func playerTookDamage(dmgValue):
+	for i in range(dmgValue):
+		hearts[i + player.hp].play(TAKEDAMAGE)

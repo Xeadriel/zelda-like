@@ -68,7 +68,7 @@ func takeDamage(dmg):
 		playerDeath.emit(playerNumber)
 		if hp < 0:
 			return
-	playerTakesDamage.emit()
+	playerTakesDamage.emit(dmg)
 
 # attacks in facing direction
 func attack() -> void:

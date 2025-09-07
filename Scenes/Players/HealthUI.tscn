@@ -97,7 +97,7 @@ script = ExtResource("1_ntbqr")
 visible = false
 position = Vector2(24, 40)
 sprite_frames = SubResource("SpriteFrames_ntbqr")
-animation = &"idle"
+animation = &"takeDamage"
 autoplay = "idle"
 
 [node name="HalfHeartRight" type="AnimatedSprite2D" parent="."]

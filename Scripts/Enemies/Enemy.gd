@@ -111,35 +111,6 @@ func telegraphAttack() -> void:
 		Direction.RIGHT:
 			animatedSprite.play("telegraphRight")
 
-func attack() -> void:
-	match direction:
-		Direction.UP:
-			attackUp.process_mode = PROCESS_MODE_INHERIT
-			attackUp.visible = true
-			animatedSprite.play("attackBack")
-		Direction.DOWN:
-			attackDown.process_mode = PROCESS_MODE_INHERIT
-			attackDown.visible = true
-			animatedSprite.play("attackFront")
-		Direction.LEFT:
-			attackLeft.process_mode = PROCESS_MODE_INHERIT
-			attackLeft.visible = true
-			animatedSprite.play("attackLeft")
-		Direction.RIGHT:
-			attackRight.process_mode = PROCESS_MODE_INHERIT
-			attackRight.visible = true
-			animatedSprite.play("attackRight")
-
-func stopAttack() -> void:
-	attackUp.visible = false
-	attackDown.visible = false
-	attackLeft.visible = false
-	attackRight.visible = false
-	attackUp.process_mode = PROCESS_MODE_DISABLED
-	attackDown.process_mode = PROCESS_MODE_DISABLED
-	attackLeft.process_mode = PROCESS_MODE_DISABLED
-	attackRight.process_mode = PROCESS_MODE_DISABLED
-
 # signal when area2D collides with something
 func hitSomething(body: Node2D) -> void:
 	if body is Player:

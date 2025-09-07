@@ -48,7 +48,6 @@ shape = SubResource("CircleShape2D_y2a76")
 
 [node name="CameraBorder" type="StaticBody2D" parent="."]
 collision_layer = 4
-collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_tjece")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder"]

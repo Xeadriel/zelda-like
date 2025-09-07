@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=11 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_gwj4l"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="2_eb5f0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/Players/AutoCamera.tscn" id="3_y4e11"]
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="5_7f6id"]
 [ext_resource type="PackedScene" uid="uid://ckb4js3ol8fj4" path="res://Scenes/Players/HealthUI.tscn" id="5_8wfgm"]
+[ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="6_ska8t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_gwj4l")
@@ -248,17 +249,21 @@ position = Vector2(1153, -401)
 [node name="Goblin2" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("2_hro2n")]
 position = Vector2(1500, -406)
 
-[node name="Goblin3" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("2_hro2n")]
-position = Vector2(1051, -551)
-
-[node name="Goblin4" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("2_hro2n")]
-position = Vector2(1563, -530)
-
 [node name="Altar with chalice" type="Sprite2D" parent="2DObjects/Enemies/ChaliceAltarRoom"]
 modulate = Color(0.233925, 0.233925, 0.233925, 1)
 position = Vector2(1283, -817.5)
 scale = Vector2(1.59259, 1.19231)
 texture = ExtResource("3_xbxf7")
+
+[node name="Wizard2" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("6_ska8t")]
+position = Vector2(1637, -549)
+atkRange = 500.0
+aggroRange = 800.0
+
+[node name="Wizard3" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("6_ska8t")]
+position = Vector2(1074, -545)
+atkRange = 500.0
+aggroRange = 800.0
 
 [node name="FoodHallway" type="Node2D" parent="2DObjects/Enemies"]
 
