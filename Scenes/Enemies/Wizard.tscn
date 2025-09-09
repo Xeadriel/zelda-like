@@ -869,3 +869,5 @@ script = ExtResource("8_luagb")
 entity = NodePath("../..")
 
 [node name="FireballsContainer" type="Node" parent="."]
+
+[node name="AtkSpawnPoint" type="Marker2D" parent="."]

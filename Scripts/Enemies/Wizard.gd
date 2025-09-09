@@ -1,6 +1,8 @@
 class_name Wizard extends Enemy
 
-@onready var fireballContainer = $FireballsContainer
+@onready var fireballContainer: Node = $FireballsContainer
+@onready var atkSpawnPoint: Marker2D = $AtkSpawnPoint
+
 var fireballScene = preload("res://Scenes/Enemies/Fireball.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,9 +82,10 @@ func telegraphAttack() -> void:
 
 func attack() -> void:
 	var fireball = fireballScene.instantiate()
-	fireball.global_position = global_position
-	var fireballDirection = fireball.global_position.direction_to(target.global_position)
-	fireball.direction = fireballDirection
+	var atkDirection = global_position.direction_to(target.global_position)
+	atkSpawnPoint.global_position = global_position + atkDirection * 100
+	fireball.global_position = atkSpawnPoint.global_position
+	fireball.direction = fireball.global_position.direction_to(target.global_position)
 	fireballContainer.add_child(fireball)
 	
 	match direction:
