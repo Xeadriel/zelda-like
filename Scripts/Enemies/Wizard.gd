@@ -3,12 +3,6 @@ class_name Wizard extends Enemy
 @onready var fireballContainer = $FireballsContainer
 var fireballScene = preload("res://Scenes/Enemies/Fireball.tscn")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	currentHp = maxHp
-	animatedSprite.animation_finished.connect(animationFinished)
-	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -87,9 +81,10 @@ func telegraphAttack() -> void:
 func attack() -> void:
 	var fireball = fireballScene.instantiate()
 	fireball.global_position = global_position
-	var direction = fireball.global_position.direction_to(target.global_position)
-	fireball.direction = direction
+	var fireballDirection = fireball.global_position.direction_to(target.global_position)
+	fireball.direction = fireballDirection
 	fireballContainer.add_child(fireball)
+	
 	match direction:
 		Direction.UP:
 			animatedSprite.play("attackBack")

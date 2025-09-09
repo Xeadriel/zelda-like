@@ -1,10 +1,4 @@
 class_name Goblin extends Enemy
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	currentHp = maxHp
-	animatedSprite.animation_finished.connect(animationFinished)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
